@@ -41,47 +41,6 @@
         });
     }
   </script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-    .login-container {
-      background-color: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      width: 300px;
-    }
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .input-field {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .login-button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .login-button:hover {
-      background-color: #0056b3;
-    }
-  </style>
 </head>
 <body>
   <div class="login-container">
@@ -89,6 +48,41 @@
     <input type="email" id="email" class="input-field" placeholder="Email" required>
     <input type="password" id="password" class="input-field" placeholder="Password" required>
     <button class="login-button" onclick="loginUser()">Accedi</button>
+
+
+
+
+<div id="root">
+  <div class="css-0">
+    <div class="css-sa978s">
+      <div class="chakra-stack css-owjkmg">
+        <div id="login" class="css-0">
+          <img src="https://gabrieljones.it/assets/logo.png" class="chakra-image css-1l7byx6">
+          <form>
+            <div class="css-1r0qr4y">
+              <div class="css-zd4of5">
+                <label for="id-username" title="login" class="chakra-form__label css-13kcuzq">login</label>
+              </div>
+              <div class="css-tuh9u2">
+                <input type="text" class="chakra-input css-6350ya" step="any" name="username" id="id-username">
+              </div>
+              <div class="css-zd4of5">
+                <label for="id-password" title="password" class="chakra-form__label css-13kcuzq">password</label>
+              </div>
+              <div class="css-tuh9u2">
+                <input type="password" class="chakra-input css-6350ya" step="any" name="password" id="id-password">
+              </div>
+              <div class="css-jq86wz">
+                <button type="submit" class="chakra-button css-1wtqn6j">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
   </div>
 </body>
 </html>
