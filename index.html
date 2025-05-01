@@ -1,62 +1,43 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Login - GabrielJones</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 20px;">
+<body style="font-family: 'Arial', sans-serif; margin: 0; padding: 0; background-color: #282c34; display: flex; justify-content: center; align-items: center; height: 100vh; background-image: linear-gradient(45deg, #4c6ef5, #2a3dff);">
+    <div style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; padding: 30px 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); width: 300px; text-align: center;">
+        <h2 style="color: #333; font-size: 24px; margin-bottom: 20px;">Benvenuto!</h2>
+        <form action="#" method="POST">
+            <input type="text" name="username" placeholder="Username" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.3s;">
+            <input type="password" name="password" placeholder="Password" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 5px; font-size: 16px; outline: none; transition: border 0.3s;">
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #4c6ef5; color: white; border: none; border-radius: 5px; font-size: 18px; cursor: pointer; transition: background-color 0.3s;">
+                Accedi
+            </button>
+        </form>
+        <p style="margin-top: 15px; font-size: 14px; color: #666;">Non hai un account? <a href="#" style="color: #4c6ef5; text-decoration: none;">Registrati</a></p>
+    </div>
 
-  <h1>Accedi con GabrielJones</h1>
-
-  <div id="login-box">
-    <input type="email" id="email" placeholder="Email" style="margin:5px;"><br>
-    <input type="password" id="password" placeholder="Password" style="margin:5px;"><br>
-    <button id="loginBtn">Login</button>
-  </div>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
-    // Configurazione Firebase
-    const firebaseConfig = {
-      apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
-      authDomain: "gabrieljonesportal.firebaseapp.com",
-      projectId: "gabrieljonesportal",
-      storageBucket: "gabrieljonesportal.firebasestorage.app",
-      messagingSenderId: "773044143707",
-      appId: "1:773044143707:web:af838ff6788bf85991e17e",
-      measurementId: "G-6V66B6B04Q"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Recupera URL di redirezione dopo il login
-    const urlParams = new URLSearchParams(window.location.search);
-    const redirectUrl = urlParams.get("redirect") || "https://gabrieljones.it/";
-
-    // Se l'utente è già loggato, reindirizza automaticamente
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        window.location.href = redirectUrl;
-      }
-    });
-
-    // Login con email e password
-    document.getElementById("loginBtn").addEventListener("click", () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          window.location.href = redirectUrl;
-        })
-        .catch(error => {
-          alert("Errore login: " + error.message);
+    <script>
+        // Aggiungi effetti hover sui campi input
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.style.borderColor = '#4c6ef5';
+            });
+            input.addEventListener('blur', () => {
+                input.style.borderColor = '#ddd';
+            });
         });
-    });
-  </script>
 
+        // Aggiungi effetto hover sul pulsante
+        const button = document.querySelector('button');
+        button.addEventListener('mouseover', () => {
+            button.style.backgroundColor = '#2a3dff';
+        });
+        button.addEventListener('mouseout', () => {
+            button.style.backgroundColor = '#4c6ef5';
+        });
+    </script>
 </body>
 </html>
