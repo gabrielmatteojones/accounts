@@ -2,22 +2,21 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Accesso - Gabriel Jones Portal</title>
+  <title>Login - GabrielJones</title>
 </head>
 <body style="font-family: sans-serif; text-align: center; padding: 20px;">
 
-  <h1>Accedi al portale</h1>
+  <h1>Accedi con GabrielJones</h1>
 
   <div id="login-box">
     <input type="email" id="email" placeholder="Email" style="margin:5px;"><br>
     <input type="password" id="password" placeholder="Password" style="margin:5px;"><br>
     <button id="loginBtn">Login</button>
-    <button id="signupBtn">Registrati</button>
   </div>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
     // Configurazione Firebase
     const firebaseConfig = {
@@ -33,18 +32,18 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Recupera redirect URL
+    // Recupera URL di redirezione dopo il login
     const urlParams = new URLSearchParams(window.location.search);
     const redirectUrl = urlParams.get("redirect") || "https://gabrieljones.it/";
 
-    // Se già autenticato, reindirizza
+    // Se l'utente è già loggato, reindirizza automaticamente
     onAuthStateChanged(auth, user => {
       if (user) {
         window.location.href = redirectUrl;
       }
     });
 
-    // Login
+    // Login con email e password
     document.getElementById("loginBtn").addEventListener("click", () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -53,20 +52,11 @@
         .then(() => {
           window.location.href = redirectUrl;
         })
-        .catch(error => alert("Errore login: " + error.message));
-    });
-
-    // Registrazione
-    document.getElementById("signupBtn").addEventListener("click", () => {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          window.location.href = redirectUrl;
-        })
-        .catch(error => alert("Errore registrazione: " + error.message));
+        .catch(error => {
+          alert("Errore login: " + error.message);
+        });
     });
   </script>
+
 </body>
 </html>
