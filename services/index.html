@@ -87,9 +87,45 @@
   <h1>Benvenuto nella tua pagina protetta</h1>
   <p>Questa è una sezione riservata agli utenti autenticati. Puoi vedere queste informazioni perché hai effettuato il login.</p>
 
-  <button id="logoutBtn">Logout</button>
 
-  <script type="module">
+
+
+
+
+
+
+
+
+
+  <section style="background-color: #f3f6f9; padding: 6rem 0; display: flex; align-items: center; justify-content: center;">
+    <div style="max-width: 1200px; padding: 0;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
+        <!-- Left Section -->
+        <div style="flex: 1; padding: 1rem; text-align: left;">
+          <h1 style="font-size: 3.5rem; font-weight: 700; color: #005a87; margin-bottom: 1.5rem;">Sei appena stato su gabrieljones.it</h1>
+          <p style="font-size: 1.75rem; color: #005a87; margin-bottom: 3rem;">Facci sapere se ti è piaciuto il sito! <a href="https://gabrieljones.it/forms/gabrieljonesit-like">Da questo link</a></p>
+          <a href="https://gabrieljones.it" style="display: inline-block; padding: 1rem 2rem; font-weight: bold; font-size: 1.25rem; background-color: #005a87; color: white; text-decoration: none; border-radius: 30px;">Vai su gabrieljones.it</a>
+        </div>
+        <!-- Right Section (Image) -->
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <img src="https://gabrieljones.it/assets/logo.png" alt="Logo" style="max-width: 250px; height: auto;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background-color: #005a87; color: white; padding: 2rem 0; text-align: center;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p style="font-size: 1rem; margin-bottom: 1rem;">© 2025 Gabriel Jones. Tutti i diritti riservati.</p>
+      <div>
+        <a href="https://www.facebook.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Pinterest</a>
+        <a href="https://www.twitter.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Twitter</a>
+        <a href="https://www.linkedin.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Snapchat</a>
+      </div>
+    </div>
+  </footer>
+ <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
