@@ -2,9 +2,8 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gabriel Jones</title>
   <style>
@@ -20,29 +19,23 @@
 </head>
 <body style="font-family: sans-serif;">
 
-
-
-
-
   <div class="bg-dark text-white py-3">
     <div class="container">
       <strong>Sito gestito da gabrieljones.it</strong>
     </div>
-</div>
-
-
+  </div>
 
   <nav class="navbar navbar-expand-lg py-3">
     <div class="container">
       <a class="navbar-brand" href="/">
-          <img src="https://gabrieljones.it/assets/logo.png" alt="Logo" class="icon" width="91" height="93">Gabriel Jones</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="https://gabrieljones.it/assets/logo.png" alt="Logo" class="icon" width="91" height="93">Gabriel Jones</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link active" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://gabrieljones.it/tag/">Trasparenza</a>
@@ -52,61 +45,56 @@
     </div>
   </nav>
 
-
-
-
   <div class="container d-flex justify-content-between align-items-center">
-  <ul class="nav">
-    <li class="nav-item"><a class="nav-link text-dark" href="/ag/">Arena Giovani</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="/journal/">Journal</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="/legal/">Legal</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="https://gabrieljones.it/ufficio-redazioni/">Ufficio Redazioni Unite</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="/onlygabbyme/">Onlygabbyme</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="https://gabrielmatteojones.link/">Links</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="/biografia/">Chi sono</a></li>
-    <li class="nav-item"><a class="nav-link text-dark" href="/contatti/">Contatti</a></li>
-  </ul>
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link text-dark" href="/ag/">Arena Giovani</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/journal/">Journal</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/legal/">Legal</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="https://gabrieljones.it/ufficio-redazioni/">Ufficio Redazioni Unite</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/onlygabbyme/">Onlygabbyme</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="https://gabrielmatteojones.link/">Links</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/biografia/">Chi sono</a></li>
+      <li class="nav-item"><a class="nav-link text-dark" href="/contatti/">Contatti</a></li>
+    </ul>
+    <div class="dropdown text-end">
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+          <path d="..."/>
+        </svg>
+      </a>
+      <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#" id="logoutBtn">Disconnetti</a></li>
+      </ul>
+    </div>
+  </div>
 
-  <!-- Emoji utente -->
-<div class="dropdown text-end">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-  <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"></path>
-</svg>          </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
-              <li><a class="dropdown-item" href="#" id="logoutBtn">Disconnetti</a></li>
-          </ul>
-</div>
-</div>
-
-
-
-
-
-  
   <h1>Benvenuto nella tua pagina protetta</h1>
   <p>Questa è una sezione riservata agli utenti autenticati. Puoi vedere queste informazioni perché hai effettuato il login.</p>
 
-
-
-
-
-
-
-
-
-
+  <div class="container my-5">
+    <h2>I tuoi segnalibri</h2>
+    <form id="bookmark-form" class="row g-3 mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="bookmark-name" placeholder="Nome" required>
+      </div>
+      <div class="col-md-6">
+        <input type="url" class="form-control" id="bookmark-url" placeholder="https://esempio.com" required>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-primary w-100">Aggiungi</button>
+      </div>
+    </form>
+    <ul id="bookmark-list" class="list-group"></ul>
+  </div>
 
   <section style="background-color: #f3f6f9; padding: 6rem 0; display: flex; align-items: center; justify-content: center;">
     <div style="max-width: 1200px; padding: 0;">
       <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center;">
-        <!-- Left Section -->
         <div style="flex: 1; padding: 1rem; text-align: left;">
           <h1 style="font-size: 3.5rem; font-weight: 700; color: #005a87; margin-bottom: 1.5rem;">Sei appena stato su gabrieljones.it</h1>
           <p style="font-size: 1.75rem; color: #005a87; margin-bottom: 3rem;">Facci sapere se ti è piaciuto il sito! <a href="https://gabrieljones.it/forms/gabrieljonesit-like">Da questo link</a></p>
-          <a href="https://gabrieljones.it" style="display: inline-block; padding: 1rem 2rem; font-weight: bold; font-size: 1.25rem; background-color: #005a87; color: white; text-decoration: none; border-radius: 30px;">Vai su gabrieljones.it</a>
+          <a href="https://gabrieljones.it" style="...">Vai su gabrieljones.it</a>
         </div>
-        <!-- Right Section (Image) -->
         <div style="flex: 1; display: flex; justify-content: center;">
           <img src="https://gabrieljones.it/assets/logo.png" alt="Logo" style="max-width: 250px; height: auto;">
         </div>
@@ -114,22 +102,23 @@
     </div>
   </section>
 
-  <footer style="background-color: #005a87; color: white; padding: 2rem 0; text-align: center;">
-    <div style="max-width: 1200px; margin: 0 auto;">
-      <p style="font-size: 1rem; margin-bottom: 1rem;">© 2025 Gabriel Jones. Tutti i diritti riservati.</p>
+  <footer style="...">
+    <div style="...">
+      <p style="...">© 2025 Gabriel Jones. Tutti i diritti riservati.</p>
       <div>
-        <a href="https://www.facebook.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Instagram</a>
-        <a href="https://www.facebook.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Pinterest</a>
-        <a href="https://www.twitter.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Twitter</a>
-        <a href="https://www.linkedin.com" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.5rem;" target="_blank">Snapchat</a>
+        <a href="...">Instagram</a>
+        <a href="...">Pinterest</a>
+        <a href="...">Twitter</a>
+        <a href="...">Snapchat</a>
       </div>
     </div>
   </footer>
- <script type="module">
+
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    // Configurazione Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
       authDomain: "gabrieljonesportal.firebaseapp.com",
@@ -142,26 +131,72 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app);
 
-    // Controlla se l'utente è loggato
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        // L'utente è loggato, mostra la pagina protetta
-        document.getElementById("content").style.display = "block";
-      } else {
-        // L'utente non è loggato, reindirizza alla pagina di login
+    onAuthStateChanged(auth, async user => {
+      if (!user) {
         const redirectTo = encodeURIComponent(window.location.href);
         window.location.href = "https://gabrieljones.it/accounts/?redirect=" + redirectTo;
+        return;
       }
+      const docRef = doc(db, "bookmarks", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) await setDoc(docRef, { links: [] });
+      renderBookmarks(docSnap.data()?.links || []);
     });
 
-    // Logout
     document.getElementById("logoutBtn").addEventListener("click", () => {
-      signOut(auth).then(() => {
-        window.location.reload(); // Ricarica la pagina per riflettere il logout
-      });
+      signOut(auth).then(() => window.location.reload());
     });
-  </script>
 
+    const form = document.getElementById("bookmark-form");
+    const list = document.getElementById("bookmark-list");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("bookmark-name").value.trim();
+      const url = document.getElementById("bookmark-url").value.trim();
+      const user = auth.currentUser;
+      if (!user) return;
+      const docRef = doc(db, "bookmarks", user.uid);
+      const docSnap = await getDoc(docRef);
+      let links = docSnap.data()?.links || [];
+      links.push({ name, url });
+      await setDoc(docRef, { links });
+      renderBookmarks(links);
+      form.reset();
+    });
+
+    function renderBookmarks(links) {
+      list.innerHTML = "";
+      if (!links.length) {
+        list.innerHTML = "<li class='list-group-item text-muted'>Nessun segnalibro salvato.</li>";
+        return;
+      }
+      links.forEach((link, i) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.innerHTML = `
+          <a href="${link.url}" target="_blank">${link.name}</a>
+          <button class="btn btn-sm btn-outline-danger" data-index="${i}">Rimuovi</button>
+        `;
+        list.appendChild(li);
+      });
+
+      list.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const index = btn.getAttribute("data-index");
+          const user = auth.currentUser;
+          if (!user) return;
+          const docRef = doc(db, "bookmarks", user.uid);
+          const docSnap = await getDoc(docRef);
+          let links = docSnap.data()?.links || [];
+          links.splice(index, 1);
+          await setDoc(docRef, { links });
+          renderBookmarks(links);
+        });
+      });
+    }
+  </script>
 </body>
 </html>
