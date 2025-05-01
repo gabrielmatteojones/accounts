@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagina Protetta - GabrielJones</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+
+  <h1>Benvenuto nella tua pagina protetta</h1>
+  <p>Questa è una sezione riservata agli utenti autenticati. Puoi vedere queste informazioni perché hai effettuato il login.</p>
+
+  <button id="logoutBtn">Logout</button>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    // Configurazione Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
+      authDomain: "gabrieljonesportal.firebaseapp.com",
+      projectId: "gabrieljonesportal",
+      storageBucket: "gabrieljonesportal.firebasestorage.app",
+      messagingSenderId: "773044143707",
+      appId: "1:773044143707:web:af838ff6788bf85991e17e",
+      measurementId: "G-6V66B6B04Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Controlla se l'utente è loggato
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        // L'utente è loggato, mostra la pagina protetta
+        document.getElementById("content").style.display = "block";
+      } else {
+        // L'utente non è loggato, reindirizza alla pagina di login
+        const redirectTo = encodeURIComponent(window.location.href);
+        window.location.href = "https://gabrieljones.it/accounts/?redirect=" + redirectTo;
+      }
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.reload(); // Ricarica la pagina per riflettere il logout
+      });
+    });
+  </script>
+
+</body>
+</html>
