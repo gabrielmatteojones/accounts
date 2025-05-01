@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionale Gabriel Jones</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding: 20px;">
+
+  <h1>Gestionale Gabriel Jones</h1>
+
+  <!-- Login -->
+  <div id="login" style="display: none;">
+    <h2>Accedi</h2>
+    <input type="email" id="email" placeholder="Email" style="margin:5px;"><br>
+    <input type="password" id="password" placeholder="Password" style="margin:5px;"><br>
+    <button id="loginBtn">Login</button>
+    <button id="signupBtn">Registrati</button>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="dashboard" style="display: none;">
+    <h2>Benvenuto, <span id="user-email"></span>!</h2>
+    <p><a href="crea-documento.html">📄 Crea un documento HTML</a></p>
+    <p><a href="#">📁 Visualizza documenti</a></p>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+  <!-- Firebase SDKs + script -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
+      authDomain: "gabrieljonesportal.firebaseapp.com",
+      projectId: "gabrieljonesportal",
+      storageBucket: "gabrieljonesportal.firebasestorage.app",
+      messagingSenderId: "773044143707",
+      appId: "1:773044143707:web:af838ff6788bf85991e17e",
+      measurementId: "G-6V66B6B04Q"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const analytics = getAnalytics(app);
+
+    const loginDiv = document.getElementById("login");
+    const dashboardDiv = document.getElementById("dashboard");
+    const userEmailSpan = document.getElementById("user-email");
+
+    // Gestione stato login
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        loginDiv.style.display = "none";
+        dashboardDiv.style.display = "block";
+        userEmailSpan.textContent = user.email;
+      } else {
+        loginDiv.style.display = "block";
+        dashboardDiv.style.display = "none";
+      }
+    });
+
+    // Login
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      signInWithEmailAndPassword(auth, email, password)
+        .catch(error => alert("Errore login: " + error.message));
+    });
+
+    // Registrazione
+    document.getElementById("signupBtn").addEventListener("click", () => {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      createUserWithEmailAndPassword(auth, email, password)
+        .catch(error => alert("Errore registrazione: " + error.message));
+    });
+
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      signOut(auth);
+    });
+  </script>
+</body>
+</html>
