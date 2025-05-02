@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Login - Gabriel Jones</title>
+  <meta charset="UTF-8" />
+  <title>Accedi - Gabriel Jones</title>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 </head>
 <body>
-  <h2>Login</h2>
-  <input id="email" type="email" placeholder="Email"><br>
-  <input id="password" type="password" placeholder="Password"><br>
-  <button onclick="login()">Accedi</button>
+  <h2>Accedi</h2>
+  <form id="login-form">
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
+  <p id="error-message" style="color:red;"></p>
 
   <script>
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
       authDomain: "gabrieljonesportal.firebaseapp.com",
@@ -22,24 +26,34 @@
       appId: "1:773044143707:web:af838ff6788bf85991e17e",
       measurementId: "G-6V66B6B04Q"
     };
-    firebase.initializeApp(firebaseConfig);
 
-    async function login() {
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Estrai redirect dalla query string
+    const params = new URLSearchParams(window.location.search);
+    const redirect = params.get('redirect');
+    const redirectUrl = redirect ? decodeURIComponent(redirect) : "https://gabrieljones.it";
+
+    // Login
+    document.getElementById("login-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
+      const errorEl = document.getElementById("error-message");
+
       try {
-        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-        const token = await userCredential.user.getIdToken();
+        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+        const token = await user.getIdToken();
 
-        const redirect = new URLSearchParams(window.location.search).get("redirect");
-        const redirectUrl = redirect ? decodeURIComponent(redirect) : "https://gabrieljones.it";
-
-        // Reindirizza con token nella query
-        window.location.href = `${redirectUrl}?token=${token}`;
+        // Redirect con token JWT
+        const separator = redirectUrl.includes('?') ? '&' : '?';
+        window.location.href = `${redirectUrl}${separator}token=${token}`;
       } catch (error) {
-        alert("Errore di login: " + error.message);
+        errorEl.textContent = "Errore: " + error.message;
       }
-    }
+    });
   </script>
 </body>
 </html>
