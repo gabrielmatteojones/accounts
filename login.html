@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <title>Accedi - Gabriel Jones</title>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <meta charset="UTF-8">
+  <title>Login | Gabriel Jones</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
 </head>
-<body>
-  <h2>Accedi</h2>
-  <form id="login-form">
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-  <p id="error-message" style="color:red;"></p>
+<body style="font-family: sans-serif; background: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh;">
+
+  <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
+    <h2 style="margin-top: 0;">Accesso</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <input type="password" id="password" placeholder="Password" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
+      <button type="submit" style="width: 100%; padding: 10px; background: black; color: white; border: none;">Entra</button>
+    </form>
+    <p id="error-message" style="color: red; margin-top: 10px;"></p>
+  </div>
 
   <script>
     // Firebase config
@@ -26,16 +29,15 @@
       appId: "1:773044143707:web:af838ff6788bf85991e17e",
       measurementId: "G-6V66B6B04Q"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Estrai redirect dalla query string
-    const params = new URLSearchParams(window.location.search);
-    const redirect = params.get('redirect');
-    const redirectUrl = redirect ? decodeURIComponent(redirect) : "https://gabrieljones.it";
+    // Funzione per ottenere URL di redirect
+    function getRedirectUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return decodeURIComponent(params.get("redirect") || "https://gabrieljones.it");
+    }
 
-    // Login
     document.getElementById("login-form").addEventListener("submit", async (e) => {
       e.preventDefault();
       const email = document.getElementById("email").value;
@@ -44,16 +46,17 @@
 
       try {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        const user = userCredential.user;
-        const token = await user.getIdToken();
-
-        // Redirect con token JWT
-        const separator = redirectUrl.includes('?') ? '&' : '?';
-        window.location.href = `${redirectUrl}${separator}token=${token}`;
+        const token = await userCredential.user.getIdToken();
+        const redirectUrl = getRedirectUrl();
+        const separator = redirectUrl.includes("?") ? "&" : "?";
+        const finalUrl = `${redirectUrl}${separator}token=${token}`;
+        window.location.href = finalUrl;
       } catch (error) {
-        errorEl.textContent = "Errore: " + error.message;
+        console.error("Errore di login:", error);
+        errorEl.textContent = "Credenziali non valide o errore di rete.";
       }
     });
   </script>
+
 </body>
 </html>
