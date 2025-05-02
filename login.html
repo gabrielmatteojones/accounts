@@ -2,70 +2,48 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Login | Gabriel Jones</title>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <title>Login</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 </head>
-<body style="font-family: sans-serif; background: #f0f0f0; display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
-    <h2 style="margin-top: 0;">Accesso</h2>
-    <form id="login-form">
-      <input type="email" id="email" placeholder="Email" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-      <input type="password" id="password" placeholder="Password" required style="width: 100%; padding: 10px; margin-bottom: 10px;">
-      <button type="submit" style="width: 100%; padding: 10px; background: black; color: white; border: none;">Entra</button>
-    </form>
-    <p id="error-message" style="color: red; margin-top: 10px;"></p>
-    <p id="debug-message" style="color: gray; font-size: 12px; margin-top: 5px;"></p>
-  </div>
+<body>
+  <h2>Login</h2>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="login()">Accedi</button>
+  <p id="status"></p>
 
   <script>
+    // Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBTU4YncIZH8AFW22xXs0lJad_qulv_nvc",
       authDomain: "gabrieljonesportal.firebaseapp.com",
       projectId: "gabrieljonesportal",
-      storageBucket: "gabrieljonesportal.firebasestorage.app",
+      storageBucket: "gabrieljonesportal.appspot.com",
       messagingSenderId: "773044143707",
       appId: "1:773044143707:web:af838ff6788bf85991e17e",
       measurementId: "G-6V66B6B04Q"
     };
+
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    function getRedirectUrl() {
-      const params = new URLSearchParams(window.location.search);
-      const url = params.get("redirect");
-      return url ? decodeURIComponent(url) : "https://gabrieljones.it";
-    }
-
-    document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
+    async function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
-      const errorEl = document.getElementById("error-message");
-      const debugEl = document.getElementById("debug-message");
-
-      errorEl.textContent = "";
-      debugEl.textContent = "Login in corso...";
+      const status = document.getElementById("status");
 
       try {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
-        const token = await userCredential.user.getIdToken();
-        const redirectUrl = getRedirectUrl();
-
-        const separator = redirectUrl.includes("?") ? "&" : "?";
-        const finalUrl = `${redirectUrl}${separator}token=${token}`;
-        debugEl.textContent = "Reindirizzamento a: " + finalUrl;
-
-        // Delay per mostrare debug, poi redirect
-        setTimeout(() => {
-          window.location.href = finalUrl;
-        }, 1000);
+        const user = userCredential.user;
+        status.textContent = "Login riuscito!";
+        // Puoi fare redirect o mostrare il contenuto
+        window.location.href = "dashboard.html"; // oppure index.html
       } catch (error) {
-        console.error("Errore di login:", error);
-        errorEl.textContent = "Errore: " + (error.message || "Impossibile accedere.");
-        debugEl.textContent = "";
+        console.error(error);
+        status.textContent = "Errore: " + error.message;
       }
-    });
+    }
   </script>
 </body>
 </html>
